@@ -1,3 +1,3 @@
 # merge-pojos
 
-A Library to merge Java Pojos.
+Core library to merge/patch Java Pojos.
