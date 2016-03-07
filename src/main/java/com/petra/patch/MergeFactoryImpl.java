@@ -1,6 +1,7 @@
 package com.petra.patch;
 
 import com.petra.patch.api.CustomMerge;
+import com.petra.patch.api.CustomizableMergeFacade;
 import com.petra.patch.api.MergeFactory;
 import com.petra.patch.api.StrategyBasedMergeFacade;
 import com.petra.patch.impl.StrategyBasedMergeFacadeImpl;
@@ -15,15 +16,15 @@ import com.petra.patch.impl.StrategyBasedMergeFacadeImpl;
 
 public class MergeFactoryImpl implements MergeFactory {
 
-	public StrategyBasedMergeFacade mergeRequest() {
-		return new StrategyBasedMergeFacadeImpl();
-	}
-
-	public StrategyBasedMergeFacade facade() {
+	public CustomizableMergeFacade facade() {
 		return null;
 	}
 
-	public <T> MergeFactory customize(Class<T> dummyPojoClass, CustomMerge<T> customMerge) {
+	public <T> MergeFactory customize(Class<T> type, CustomMerge<T> customMerge) {
+		return null;
+	}
+
+	public <T> MergeFactory customize(Class<?> type, String fieldName, CustomMerge<T> customMerge) {
 		return null;
 	}
 }
