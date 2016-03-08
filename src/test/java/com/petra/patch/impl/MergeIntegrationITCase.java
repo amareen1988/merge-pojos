@@ -8,7 +8,6 @@ import static com.petra.patch.api.MergeStrategy.TARGET;
 import com.petra.patch.api.CustomMerge;
 import com.petra.patch.api.MergeFactory;
 import com.petra.patch.api.facade.CustomizableMergeFacade;
-import com.petra.patch.impl.MergeFactoryImpl;
 import org.junit.Before;
 import org.junit.Test;
 
