@@ -10,6 +10,10 @@ import java.lang.annotation.Target;
 /**
  * Created by amarees on 3/7/16.
  */
+
+/**
+ * This annotation is needed to specify how a certain field should be merged.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD})
 public @interface MergeStrategy {

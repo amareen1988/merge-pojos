@@ -8,6 +8,10 @@ import java.lang.annotation.Target;
 /**
  * Created by amarees on 3/5/16.
  */
+
+/**
+ * A pojo/resource that potentially embeds other fields should be annotated with @MergeableResource
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface MergeableResource {
