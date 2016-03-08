@@ -1,8 +1,8 @@
 package com.petra.patch;
 
-import static com.petra.patch.impl.MergeStrategy.NOT_NULL;
-import static com.petra.patch.impl.MergeStrategy.SOURCE;
-import static com.petra.patch.impl.MergeStrategy.TARGET;
+import static com.petra.patch.api.MergeStrategy.NOT_NULL;
+import static com.petra.patch.api.MergeStrategy.SOURCE;
+import static com.petra.patch.api.MergeStrategy.TARGET;
 
 import com.petra.patch.api.CustomMerge;
 import com.petra.patch.api.MergeFactory;

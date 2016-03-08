@@ -1,12 +1,13 @@
 package com.petra.patch.impl;
 
-import static com.petra.patch.impl.MergeStrategy.NOT_NULL;
-import static com.petra.patch.impl.MergeStrategy.SOURCE;
-import static com.petra.patch.impl.MergeStrategy.TARGET;
+import static com.petra.patch.api.MergeStrategy.NOT_NULL;
+import static com.petra.patch.api.MergeStrategy.SOURCE;
+import static com.petra.patch.api.MergeStrategy.TARGET;
 import static java.util.Collections.unmodifiableMap;
 
 import com.petra.patch.api.CustomMerge;
 import com.petra.patch.api.MergeFactory;
+import com.petra.patch.api.MergeStrategy;
 import com.petra.patch.api.context.MergeContext;
 import com.petra.patch.api.facade.BasicMergeFacade;
 import com.petra.patch.api.facade.CustomizableMergeFacade;

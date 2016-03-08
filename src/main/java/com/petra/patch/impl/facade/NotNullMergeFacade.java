@@ -1,11 +1,11 @@
 package com.petra.patch.impl.facade;
 
-import static com.petra.patch.impl.MergeStrategy.SOURCE;
-import static com.petra.patch.impl.MergeStrategy.TARGET;
+import static com.petra.patch.api.MergeStrategy.SOURCE;
+import static com.petra.patch.api.MergeStrategy.TARGET;
 import static java.util.Arrays.asList;
 
 import com.petra.patch.api.facade.BasicMergeFacade;
-import com.petra.patch.impl.MergeStrategy;
+import com.petra.patch.api.MergeStrategy;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
