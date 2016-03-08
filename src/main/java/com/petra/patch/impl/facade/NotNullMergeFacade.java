@@ -5,11 +5,12 @@ import static com.petra.patch.impl.MergeStrategy.TARGET;
 import static java.util.Arrays.asList;
 
 import com.petra.patch.api.facade.BasicMergeFacade;
-import com.petra.patch.impl.MergeFactoryImpl;
+import com.petra.patch.impl.MergeStrategy;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,12 @@ import java.util.stream.Collectors;
  */
 public class NotNullMergeFacade implements BasicMergeFacade {
 
+	private final Map<MergeStrategy, BasicMergeFacade> facadeMap;
+
+	public NotNullMergeFacade(Map<MergeStrategy, BasicMergeFacade> facadeMap) {
+		this.facadeMap = facadeMap;
+	}
+
 	public <T> T merge(T source, T target) {
 		// TODO: find a way to either clone target or instantiate an instance.
 		if (source == null && target == null) {
@@ -25,11 +32,11 @@ public class NotNullMergeFacade implements BasicMergeFacade {
 		}
 
 		if (source == null) {
-			return MergeFactoryImpl.getFacadeMap().get(TARGET).merge(source, target);
+			return lookupFacade(TARGET).merge(source, target);
 		}
 
 		if (target == null) {
-			return MergeFactoryImpl.getFacadeMap().get(SOURCE).merge(source, target);
+			return lookupFacade(SOURCE).merge(source, target);
 		}
 
 		Set<Field> fields = getAllFieldsForClass(source.getClass());
@@ -47,6 +54,14 @@ public class NotNullMergeFacade implements BasicMergeFacade {
 		return target;
 	}
 
+	private BasicMergeFacade lookupFacade(MergeStrategy strategy) {
+		final BasicMergeFacade facade = getFacadeMap().get(strategy);
+		if (facade == null) {
+			throw new RuntimeException("No merge facade found for strategy: " + strategy);
+		}
+		return facade;
+	}
+
 	public Set<Field> getAllFieldsForClass(Class<?> clazz) {
 		if (clazz == null) {
 			return Collections.emptySet();
@@ -62,5 +77,9 @@ public class NotNullMergeFacade implements BasicMergeFacade {
 				.collect(Collectors.toSet());
 		allFields.addAll(declaredFields);
 		return allFields;
+	}
+
+	public Map<MergeStrategy, BasicMergeFacade> getFacadeMap() {
+		return facadeMap;
 	}
 }
