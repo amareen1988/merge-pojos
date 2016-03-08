@@ -5,6 +5,7 @@ import static com.petra.patch.impl.MergeStrategy.TARGET;
 
 import com.petra.patch.api.CustomMerge;
 import com.petra.patch.api.MergeFactory;
+import com.petra.patch.api.facade.CustomizableMergeFacade;
 import com.petra.patch.impl.MergeFactoryImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -82,6 +83,20 @@ public class MergeIntegrationITCase {
 
 		assert result.getX().equals(1000);
 		assert result.getY().equalsIgnoreCase("This is Y");
+	}
+
+	@Test
+	public void twoFacadeInstancesAreNotEqual() {
+		CustomizableMergeFacade facade1 = factory.facade();
+		CustomizableMergeFacade facade2 = factory.facade();
+		assert !facade1.equals(facade2);
+	}
+
+	@Test
+	public void twoFacadeInstancesHaveTheSameInitialMergeContext() {
+		CustomizableMergeFacade facade1 = factory.facade();
+		CustomizableMergeFacade facade2 = factory.facade();
+		assert facade1.getMergeContext().equals(facade2.getMergeContext());
 	}
 
 	class DummyPojo {

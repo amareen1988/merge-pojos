@@ -2,6 +2,7 @@ package com.petra.patch.impl.facade;
 
 import com.petra.patch.api.CustomMerge;
 import com.petra.patch.api.context.MergeContext;
+import com.petra.patch.api.context.ReadOnlyMergeContext;
 import com.petra.patch.api.facade.CustomizableMergeFacade;
 import com.petra.patch.api.facade.StrategyBasedMergeFacade;
 import com.petra.patch.impl.MergeStrategy;
@@ -71,5 +72,9 @@ public class CustomizableMergeFacadeImpl implements CustomizableMergeFacade {
 
 	public StrategyBasedMergeFacade getMergeFacade() {
 		return mergeFacade;
+	}
+
+	public ReadOnlyMergeContext getMergeContext() {
+		return mergeContext;
 	}
 }
