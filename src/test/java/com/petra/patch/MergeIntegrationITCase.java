@@ -1,5 +1,6 @@
 package com.petra.patch;
 
+import static com.petra.patch.impl.MergeStrategy.NOT_NULL;
 import static com.petra.patch.impl.MergeStrategy.SOURCE;
 import static com.petra.patch.impl.MergeStrategy.TARGET;
 
@@ -97,6 +98,45 @@ public class MergeIntegrationITCase {
 		CustomizableMergeFacade facade1 = factory.facade();
 		CustomizableMergeFacade facade2 = factory.facade();
 		assert facade1.getMergeContext().equals(facade2.getMergeContext());
+	}
+
+	@Test
+	public void mergeSourceToTargetNotNullBothObjectsNotNull() {
+		DummyPojo pojo1 = new DummyPojo();
+		DummyPojo pojo2 = new DummyPojo();
+		pojo1.setX(1000);
+		pojo1.setY("This is X");
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, NOT_NULL);
+
+		assert result.getX().equals(1000);
+		assert result.getY().equalsIgnoreCase("This is X");
+	}
+
+	@Test
+	public void mergeSourceToTargetNotNullTargetIsNull() {
+		DummyPojo pojo1 = new DummyPojo();
+		DummyPojo pojo2 = null;
+		pojo1.setX(1000);
+		pojo1.setY("This is X");
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, NOT_NULL);
+
+		assert result.getX().equals(1000);
+		assert result.getY().equalsIgnoreCase("This is X");
+	}
+
+	@Test
+	public void mergeSourceToTargetNotNullSourceIsNull() {
+		DummyPojo pojo1 = null;
+		DummyPojo pojo2 = new DummyPojo();
+		pojo2.setX(1000);
+		pojo2.setY("This is X");
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, NOT_NULL);
+
+		assert result.getX().equals(1000);
+		assert result.getY().equalsIgnoreCase("This is X");
 	}
 
 	class DummyPojo {
