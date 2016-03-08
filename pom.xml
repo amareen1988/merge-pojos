@@ -7,6 +7,5 @@
 	<groupId>com.petra.patch</groupId>
 	<artifactId>merge-pojos</artifactId>
 	<version>1.0-SNAPSHOT</version>
-
-
+	<!-- TODO: Add Junit -->
 </project>
