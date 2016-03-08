@@ -4,6 +4,8 @@ import static com.petra.patch.api.MergeStrategy.SOURCE;
 import static com.petra.patch.api.MergeStrategy.SOURCE_NOT_NULL;
 import static com.petra.patch.api.MergeStrategy.SOURCE_NOT_NULL_NOT_EMPTY;
 import static com.petra.patch.api.MergeStrategy.TARGET;
+import static com.petra.patch.api.MergeStrategy.TARGET_IS_NULL;
+import static com.petra.patch.api.MergeStrategy.TARGET_IS_NULL_OR_EMPTY;
 
 import com.petra.patch.api.CustomMerge;
 import com.petra.patch.api.MergeFactory;
@@ -185,6 +187,26 @@ public class MergeIntegrationITCase {
 		DummyPojo pojo2 = null;
 
 		DummyPojo result = factory.facade().merge(pojo1, pojo2, SOURCE_NOT_NULL_NOT_EMPTY);
+
+		assert result == null;
+	}
+
+	@Test
+	public void mergeSourceToTargetWithTargetIsNullStrategyBothAreNull() {
+		DummyPojo pojo1 = null;
+		DummyPojo pojo2 = null;
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, TARGET_IS_NULL);
+
+		assert result == null;
+	}
+
+	@Test
+	public void mergeSourceToTargetWithIsNullOrEmptyStrategyBothAreNull() {
+		DummyPojo pojo1 = null;
+		DummyPojo pojo2 = null;
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, TARGET_IS_NULL_OR_EMPTY);
 
 		assert result == null;
 	}

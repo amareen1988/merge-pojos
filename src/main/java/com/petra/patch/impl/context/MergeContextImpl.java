@@ -11,8 +11,8 @@ import java.util.Map;
  */
 public class MergeContextImpl implements MergeContext {
 
-	private final Map<Class<?>, CustomMerge<?>> customMergeMap = new HashMap<Class<?>, CustomMerge<?>>();
-	private final Map<ClassField, CustomMerge> classFieldCustomMergeMap = new HashMap<ClassField, CustomMerge>();
+	private final Map<Class<?>, CustomMerge<?>> customMergeMap = new HashMap<>();
+	private final Map<ClassField, CustomMerge> classFieldCustomMergeMap = new HashMap<>();
 
 	public <T> void registerCustomMerge(Class<T> type, CustomMerge<T> customMerge) {
 		register(type, customMerge);
