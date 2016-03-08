@@ -1,12 +1,19 @@
 package com.petra.patch.impl;
 
+import static com.petra.patch.impl.MergeStrategy.SOURCE;
+import static com.petra.patch.impl.MergeStrategy.TARGET;
+
 import com.petra.patch.api.CustomMerge;
 import com.petra.patch.api.MergeFactory;
 import com.petra.patch.api.context.MergeContext;
+import com.petra.patch.api.facade.BasicMergeFacade;
 import com.petra.patch.api.facade.CustomizableMergeFacade;
 import com.petra.patch.impl.context.MergeContextImpl;
+import com.petra.patch.impl.facade.BasicMergeFacadeMux;
 import com.petra.patch.impl.facade.CustomizableMergeFacadeImpl;
-import com.petra.patch.impl.facade.DefaultMergeFacadeImpl;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by amarees on 2/28/16.
@@ -18,6 +25,22 @@ import com.petra.patch.impl.facade.DefaultMergeFacadeImpl;
 
 public class MergeFactoryImpl implements MergeFactory {
 
+	private static final Map<MergeStrategy, BasicMergeFacade> facadeMap = new HashMap<MergeStrategy, BasicMergeFacade>();
+
+	static {
+		facadeMap.put(SOURCE, new BasicMergeFacade() {
+
+			public <T> T merge(T source, T target) {
+				return source;
+			}
+		});
+		facadeMap.put(TARGET, new BasicMergeFacade() {
+
+			public <T> T merge(T source, T target) {
+				return target;
+			}
+		});
+	}
 
 	/**
 	 * Singleton static context
@@ -31,7 +54,7 @@ public class MergeFactoryImpl implements MergeFactory {
 	 * @return
 	 */
 	public CustomizableMergeFacade facade() {
-		return new CustomizableMergeFacadeImpl(mergeContext, new DefaultMergeFacadeImpl());
+		return new CustomizableMergeFacadeImpl(mergeContext, new BasicMergeFacadeMux(facadeMap));
 	}
 
 	public <T> MergeFactory customize(Class<T> type, CustomMerge<T> customMerge) {
