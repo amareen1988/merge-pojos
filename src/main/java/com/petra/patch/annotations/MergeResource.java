@@ -1,6 +1,6 @@
 package com.petra.patch.annotations;
 
-import static com.petra.patch.api.MergeStrategy.NOT_NULL_NOT_EMPTY;
+import static com.petra.patch.api.MergeStrategy.SOURCE_NOT_NULL_NOT_EMPTY;
 
 import com.petra.patch.api.MergeStrategy;
 
@@ -9,5 +9,5 @@ import com.petra.patch.api.MergeStrategy;
  */
 public @interface MergeResource {
 
-	MergeStrategy strategy() default NOT_NULL_NOT_EMPTY;
+	MergeStrategy strategy() default SOURCE_NOT_NULL_NOT_EMPTY;
 }

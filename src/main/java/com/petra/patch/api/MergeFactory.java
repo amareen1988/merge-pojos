@@ -8,4 +8,6 @@ import com.petra.patch.api.facade.CustomizableMergeFacade;
 public interface MergeFactory extends CustomizableMerge<MergeFactory> {
 
 	CustomizableMergeFacade facade();
+
+	MergeFactory setDefaultStrategy(MergeStrategy defaultStrategy);
 }

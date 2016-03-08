@@ -18,11 +18,25 @@ public enum MergeStrategy {
 	 * A field in source overwrites its corresponding in target
 	 * if the field in source is not null
 	 */
-	NOT_NULL,
+	SOURCE_NOT_NULL,
 
 	/**
 	 * A field in source overwrites its corresponding in target
 	 * if the field in source is not null and not empty
 	 */
-	NOT_NULL_NOT_EMPTY;
+	SOURCE_NOT_NULL_NOT_EMPTY,
+
+	/**
+	 * A field in source overwrites its corresponding in target
+	 * if the field in target is null
+	 */
+	TARGET_IS_NULL,
+
+	/**
+	 * A field in source overwrites its corresponding in target
+	 * if the field in target is  null or empty
+	 */
+	TARGET_IS_NULL_OR_EMPTY,
+
+
 }

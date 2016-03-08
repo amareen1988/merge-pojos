@@ -10,9 +10,11 @@ import java.util.Map;
  */
 public class BasicMergeFacadeMux extends StrategyBasedMergeFacadeImpl {
 
+
 	private final Map<MergeStrategy, BasicMergeFacade> facadeMap;
 
-	public BasicMergeFacadeMux(Map<MergeStrategy, BasicMergeFacade> facadeMap) {
+	public BasicMergeFacadeMux(MergeStrategy defaultStrategy, Map<MergeStrategy, BasicMergeFacade> facadeMap) {
+		super(defaultStrategy);
 		this.facadeMap = facadeMap;
 	}
 

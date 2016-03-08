@@ -1,7 +1,7 @@
 package com.petra.patch.impl;
 
-import static com.petra.patch.api.MergeStrategy.NOT_NULL;
 import static com.petra.patch.api.MergeStrategy.SOURCE;
+import static com.petra.patch.api.MergeStrategy.SOURCE_NOT_NULL;
 import static com.petra.patch.api.MergeStrategy.TARGET;
 import static java.util.Collections.unmodifiableMap;
 
@@ -31,12 +31,14 @@ import java.util.Map;
 
 public class MergeFactoryImpl implements MergeFactory {
 
+	private MergeStrategy defaultStrategy = SOURCE_NOT_NULL;
+
 	private static final Map<MergeStrategy, BasicMergeFacade> facadeMap = new HashMap<>();
 
 	static {
 		facadeMap.put(SOURCE, new SourceBasedMergeFacade());
 		facadeMap.put(TARGET, new TargetBasedMergeFacade());
-		facadeMap.put(NOT_NULL, new NotNullMergeFacade(unmodifiableMap(facadeMap)));
+		facadeMap.put(SOURCE_NOT_NULL, new NotNullMergeFacade(unmodifiableMap(facadeMap)));
 	}
 
 	private static Map<MergeStrategy, BasicMergeFacade> getFacadeMap() {
@@ -54,7 +56,8 @@ public class MergeFactoryImpl implements MergeFactory {
 	 * @return
 	 */
 	public CustomizableMergeFacade facade() {
-		return new CustomizableMergeFacadeImpl(mergeContext, new BasicMergeFacadeMux(unmodifiableMap(facadeMap)));
+		return new CustomizableMergeFacadeImpl(mergeContext,
+				new BasicMergeFacadeMux(getDefaultStrategy(), unmodifiableMap(facadeMap)));
 	}
 
 	public <T> MergeFactory customize(Class<T> type, CustomMerge<T> customMerge) {
@@ -64,6 +67,24 @@ public class MergeFactoryImpl implements MergeFactory {
 
 	public <T> MergeFactory customize(Class<?> type, String fieldName, CustomMerge<T> customMerge) {
 		mergeContext.registerCustomMerge(type, fieldName, customMerge);
+		return this;
+	}
+
+	public MergeStrategy getDefaultStrategy() {
+		return defaultStrategy;
+	}
+
+	/**
+	 * Sets the default merge strategy
+	 *
+	 * @param defaultStrategy
+	 * @return
+	 */
+	public MergeFactory setDefaultStrategy(MergeStrategy defaultStrategy) {
+		if (defaultStrategy == null) {
+			throw new IllegalArgumentException("defaultStrategy is null");
+		}
+		this.defaultStrategy = defaultStrategy;
 		return this;
 	}
 }
