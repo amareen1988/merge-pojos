@@ -18,7 +18,7 @@ public class MergeIntegrationITCase {
 		factory = new MergeFactoryImpl();
 	}
 
-	@TesAddt
+	@Test
 	public void mergeTwoPojos() {
 
 		DummyPojo pojo1 = new DummyPojo();
