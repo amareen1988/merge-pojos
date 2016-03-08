@@ -1,6 +1,7 @@
 package com.petra.patch.impl;
 
 import static com.petra.patch.api.MergeStrategy.NOT_NULL;
+import static com.petra.patch.api.MergeStrategy.NOT_NULL_NOT_EMPTY;
 import static com.petra.patch.api.MergeStrategy.SOURCE;
 import static com.petra.patch.api.MergeStrategy.TARGET;
 
@@ -101,7 +102,7 @@ public class MergeIntegrationITCase {
 	}
 
 	@Test
-	public void mergeSourceToTargetNotNullBothObjectsNotNull() {
+	public void mergeSourceToTargetNotNullStrategyBothObjectsNotNull() {
 		DummyPojo pojo1 = new DummyPojo();
 		DummyPojo pojo2 = new DummyPojo();
 		pojo1.setX(1000);
@@ -114,7 +115,7 @@ public class MergeIntegrationITCase {
 	}
 
 	@Test
-	public void mergeSourceToTargetNotNullTargetIsNull() {
+	public void mergeSourceToTargetNotNullStrategyTargetIsNull() {
 		DummyPojo pojo1 = new DummyPojo();
 		DummyPojo pojo2 = null;
 		pojo1.setX(1000);
@@ -127,7 +128,7 @@ public class MergeIntegrationITCase {
 	}
 
 	@Test
-	public void mergeSourceToTargetNotNullSourceIsNull() {
+	public void mergeSourceToTargetNotNullStrategySourceIsNull() {
 		DummyPojo pojo1 = null;
 		DummyPojo pojo2 = new DummyPojo();
 		pojo2.setX(1000);
@@ -137,6 +138,56 @@ public class MergeIntegrationITCase {
 
 		assert result.getX().equals(1000);
 		assert result.getY().equalsIgnoreCase("This is X");
+	}
+
+	@Test
+	public void mergeSourceToTargetNotNullStrategyBothAreNull() {
+		DummyPojo pojo1 = null;
+		DummyPojo pojo2 = null;
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, NOT_NULL);
+
+		assert result == null;
+	}
+
+	@Test
+	public void mergeSourceToTargetNoStrategyBothAreNull() {
+		DummyPojo pojo1 = null;
+		DummyPojo pojo2 = null;
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2);
+
+		assert result == null;
+	}
+
+	@Test
+	public void mergeSourceToTargetWithTargetStrategyBothAreNull() {
+		DummyPojo pojo1 = null;
+		DummyPojo pojo2 = null;
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, TARGET);
+
+		assert result == null;
+	}
+
+	@Test
+	public void mergeSourceToTargetWithSourceStrategyBothAreNull() {
+		DummyPojo pojo1 = null;
+		DummyPojo pojo2 = null;
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, SOURCE);
+
+		assert result == null;
+	}
+
+	@Test
+	public void mergeSourceToTargetWithNotNullNotEmptyStrategyBothAreNull() {
+		DummyPojo pojo1 = null;
+		DummyPojo pojo2 = null;
+
+		DummyPojo result = factory.facade().merge(pojo1, pojo2, NOT_NULL_NOT_EMPTY);
+
+		assert result == null;
 	}
 
 	class DummyPojo {

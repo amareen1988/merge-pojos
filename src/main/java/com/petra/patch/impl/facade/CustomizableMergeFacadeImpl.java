@@ -25,6 +25,9 @@ public class CustomizableMergeFacadeImpl implements CustomizableMergeFacade {
 	}
 
 	public <T> T merge(T source, T target) {
+		if (source == null && target == null) {
+			return null;
+		}
 		Class<?> clazz = extractType(source, target);
 		final CustomMerge customMerge = lookupCustomMerge(clazz);
 		if (customMerge == null) {
@@ -34,6 +37,9 @@ public class CustomizableMergeFacadeImpl implements CustomizableMergeFacade {
 	}
 
 	public <T> T merge(T source, T target, MergeStrategy mergeStrategy) {
+		if (source == null && target == null) {
+			return null;
+		}
 		Class<?> clazz = extractType(source, target);
 		final CustomMerge customMerge = lookupCustomMerge(clazz);
 		if (customMerge == null) {

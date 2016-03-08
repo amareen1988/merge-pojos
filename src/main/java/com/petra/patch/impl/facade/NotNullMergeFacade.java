@@ -4,8 +4,8 @@ import static com.petra.patch.api.MergeStrategy.SOURCE;
 import static com.petra.patch.api.MergeStrategy.TARGET;
 import static java.util.Arrays.asList;
 
-import com.petra.patch.api.facade.BasicMergeFacade;
 import com.petra.patch.api.MergeStrategy;
+import com.petra.patch.api.facade.BasicMergeFacade;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
@@ -27,9 +27,6 @@ public class NotNullMergeFacade implements BasicMergeFacade {
 
 	public <T> T merge(T source, T target) {
 		// TODO: find a way to either clone target or instantiate an instance.
-		if (source == null && target == null) {
-			return null;
-		}
 
 		if (source == null) {
 			return lookupFacade(TARGET).merge(source, target);
