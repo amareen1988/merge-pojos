@@ -1,9 +1,7 @@
 package com.petra.patch.impl.facade;
 
-import static com.petra.patch.api.MergeStrategy.SOURCE_NOT_NULL_NOT_EMPTY;
-
-import com.petra.patch.api.facade.StrategyBasedMergeFacade;
 import com.petra.patch.api.MergeStrategy;
+import com.petra.patch.api.facade.StrategyBasedMergeFacade;
 
 /**
  * Created by amarees on 2/28/16.

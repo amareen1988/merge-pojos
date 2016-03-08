@@ -1,11 +1,11 @@
 package com.petra.patch.impl.facade;
 
 import com.petra.patch.api.CustomMerge;
+import com.petra.patch.api.MergeStrategy;
 import com.petra.patch.api.context.MergeContext;
 import com.petra.patch.api.context.ReadOnlyMergeContext;
 import com.petra.patch.api.facade.CustomizableMergeFacade;
 import com.petra.patch.api.facade.StrategyBasedMergeFacade;
-import com.petra.patch.api.MergeStrategy;
 
 /**
  * Created by amarees on 3/5/16.

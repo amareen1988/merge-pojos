@@ -1,7 +1,7 @@
 package com.petra.patch.impl.facade;
 
-import com.petra.patch.api.facade.BasicMergeFacade;
 import com.petra.patch.api.MergeStrategy;
+import com.petra.patch.api.facade.BasicMergeFacade;
 
 import java.util.Map;
 
