@@ -1,4 +1,4 @@
-package com.petra.patch;
+package com.petra.patch.impl;
 
 import static com.petra.patch.api.MergeStrategy.NOT_NULL;
 import static com.petra.patch.api.MergeStrategy.SOURCE;
