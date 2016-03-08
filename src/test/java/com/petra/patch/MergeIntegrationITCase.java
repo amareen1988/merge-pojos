@@ -2,6 +2,7 @@ package com.petra.patch;
 
 import com.petra.patch.api.CustomMerge;
 import com.petra.patch.api.MergeFactory;
+import com.petra.patch.impl.MergeFactoryImpl;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class MergeIntegrationITCase {
 		factory = new MergeFactoryImpl();
 	}
 
-	@Test
+	@TesAddt
 	public void mergeTwoPojos() {
 
 		DummyPojo pojo1 = new DummyPojo();

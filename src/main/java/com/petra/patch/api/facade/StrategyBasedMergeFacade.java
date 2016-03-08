@@ -1,7 +1,6 @@
-package com.petra.patch.api;
+package com.petra.patch.api.facade;
 
-import com.petra.patch.MergeStrategy;
-import com.petra.patch.api.BasicMergeFacade;
+import com.petra.patch.impl.MergeStrategy;
 
 /**
  * Created by amarees on 2/28/16.

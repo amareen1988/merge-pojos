@@ -1,11 +1,10 @@
-package com.petra.patch.impl;
+package com.petra.patch.impl.facade;
 
-import com.petra.patch.MergeStrategy;
 import com.petra.patch.api.CustomMerge;
-import com.petra.patch.api.CustomizableMergeFacade;
-import com.petra.patch.api.StrategyBasedMergeFacade;
-import java.util.HashMap;
-import java.util.Map;
+import com.petra.patch.api.context.MergeContext;
+import com.petra.patch.api.facade.CustomizableMergeFacade;
+import com.petra.patch.api.facade.StrategyBasedMergeFacade;
+import com.petra.patch.impl.MergeStrategy;
 
 /**
  * Created by amarees on 3/5/16.
@@ -16,11 +15,12 @@ import java.util.Map;
 public class CustomizableMergeFacadeImpl implements CustomizableMergeFacade {
 
 	private final StrategyBasedMergeFacade mergeFacade;
-	private final Map<Class<?>, CustomMerge<?>> customMergeMap = new HashMap<Class<?>, CustomMerge<?>>();
-	private final Map<ClassField, CustomMerge> classFieldCustomMergeMap = new HashMap<ClassField, CustomMerge>();
 
-	public CustomizableMergeFacadeImpl(final StrategyBasedMergeFacade mergeFacade) {
+	private final MergeContext mergeContext;
+
+	public CustomizableMergeFacadeImpl(MergeContext mergeContext, final StrategyBasedMergeFacade mergeFacade) {
 		this.mergeFacade = mergeFacade;
+		this.mergeContext = mergeContext;
 	}
 
 	public <T> T merge(T source, T target) {
@@ -43,7 +43,8 @@ public class CustomizableMergeFacadeImpl implements CustomizableMergeFacade {
 	}
 
 	private CustomMerge lookupCustomMerge(Class<?> clazz) {
-		return customMergeMap.get(clazz);
+		return mergeContext.lookupCustomMerge(clazz);
+		//
 	}
 
 	private <T> Class<?> extractType(T source, T target) {
@@ -57,26 +58,15 @@ public class CustomizableMergeFacadeImpl implements CustomizableMergeFacade {
 	}
 
 	public <T> CustomizableMergeFacade customize(Class<T> type, CustomMerge<T> customMerge) {
-		register(type, customMerge);
+		mergeContext.registerCustomMerge(type, customMerge);
+
 		return this;
 	}
 
-	private <T> void register(Class<T> type, CustomMerge<T> customMerge) {
-		customMergeMap.put(type, customMerge);
-	}
 
 	public <T> CustomizableMergeFacade customize(Class<?> type, String fieldName, CustomMerge<T> customMerge) {
-		final ClassField classField = classField(type, fieldName);
-		register(customMerge, classField);
+		mergeContext.registerCustomMerge(type, fieldName, customMerge);
 		return this;
-	}
-
-	private <T> void register(CustomMerge<T> customMerge, ClassField classField) {
-		classFieldCustomMergeMap.put(classField, customMerge);
-	}
-
-	private ClassField classField(Class<?> type, String fieldName) {
-		return new ClassField(type, fieldName);
 	}
 
 	public StrategyBasedMergeFacade getMergeFacade() {

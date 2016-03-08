@@ -1,8 +1,8 @@
 package com.petra.patch.annotations;
 
-import static com.petra.patch.MergeStrategy.NOT_NULL_NOT_EMPTY;
+import static com.petra.patch.impl.MergeStrategy.NOT_NULL_NOT_EMPTY;
 
-import com.petra.patch.MergeStrategy;
+import com.petra.patch.impl.MergeStrategy;
 
 /**
  * Created by amarees on 3/5/16.
