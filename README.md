@@ -18,8 +18,9 @@ We can also define different merge rules and strategies at different granulariti
 ```
 DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo, SOURCE_NOT_NULL);
 ```
-
-On the contrary, we may wish to patch only fields which are null in the `oldPojo`. That would be achieved that with TARGET_IS_NULL strategy as shown below:
+Sometimes, we would also like to ignore any empty maps, arrays or collections. This is achievable using SOURCE_NOT_EMPTY strategy. We note that SOURCE_NOT_NULL is actually the default merge strategy which will be applied when no strategy is provided. On the contrary, we may wish to patch only fields which are null in the `oldPojo`. That would be achieved that with TARGET_IS_NULL strategy as shown below:
 ```
 DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo, TARGET_IS_NULL);
 ```
+
+The examples above on apply merge strategies globally on all fields. merge-pojos has a future plan to support per-field merge strategies. 
