@@ -16,5 +16,5 @@ DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo);
 
 We can also define different merge rules and strategies at different granularities. For example, if we would like to merge only non-null fields of our `newPojo`, we can specify a SOURCE_NOT_NULL strategy as follows:
 ```
-DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo);
+DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo, SOURCE_NOT_NULL);
 ```
