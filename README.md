@@ -44,7 +44,7 @@ DummyPojo resultPojo = factory.mergeFacade().customize(String.class, "name",  ne
 			}
 		}).merge(pojo1, pojo2);
 ```
-Now, the value of the field __firstName__ in our `resultPojo` will be * "my dummy pojo's name" *.
+Now, the value of the field __firstName__ in our `resultPojo` will be _"my dummy pojo's name"_.
 
 
 }
