@@ -11,5 +11,5 @@ For example, lets assume we have two instances of `DummyPojo.class` and we would
 DummyPojo newPojo = new DummyPojo(123);
 DummyPojo oldPojo = new DummyPojo(456);
 MergeFactory factory = new MergeFactoryImpl();
-factory.mergeFacade().merge(newPojo, oldPojo);
+DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo);
 ```
