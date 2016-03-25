@@ -18,3 +18,8 @@ We can also define different merge rules and strategies at different granulariti
 ```
 DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo, SOURCE_NOT_NULL);
 ```
+
+On the contrary, we may wish to patch only fields which are null in the `oldPojo`. That would be achieved that with TARGET_IS_NULL strategy as shown below:
+```
+DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo, TARGET_IS_NULL);
+```
