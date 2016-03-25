@@ -23,7 +23,7 @@ Sometimes, we would also like to ignore any empty maps, arrays or collections. T
 DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo, TARGET_IS_NULL);
 ```
 
-The examples above on apply merge strategies globally on all fields. merge-pojos also supports per-field merge strategies. Such strategies can be defined one their respective fields using _@MergeStrategy_ annotation. Below is a list of some of the intial merge strategies provided by merge-pojos:
+The examples above on apply merge strategies globally on all fields. However, finer level merge rules can be established using the _@MergeStrategy_ annotation on respective fields. Below is a list of some of the intial merge strategies provided by merge-pojos:
 
 * SOURCE: Returns the source always.
 * SOURCE_NOT_EMPTY: A field in source overwrites its corresponding in target if the field in source is not empty.
