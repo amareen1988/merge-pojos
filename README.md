@@ -25,14 +25,14 @@ DummyPojo resultPojo = factory.mergeFacade().merge(newPojo, oldPojo, TARGET_IS_N
 
 The examples above on apply merge strategies globally on all fields. merge-pojos has a future plan to support per-field merge strategies. Below is a list of some of the intial merge strategies provided by merge-pojos:
 
-*SOURCE: Returns the source always.
-*SOURCE_NOT_EMPTY: A field in source overwrites its corresponding in target if the field in source is not empty.
-*SOURCE_NOT_NULL: A field in source overwrites its corresponding in target if the field in source is not null.
-*SOURCE_NOT_NULL_NOT_EMPTY: A field in source overwrites its corresponding in target if the field in source is not null and not empty.
-*TARGET: Returns the target always.
-*TARGET_EMPTY: A field in source overwrites its corresponding in target if the field in target is empty.
-*TARGET_IS_NULL:  A field in source overwrites its corresponding in target if the field in target is null.
-*TARGET_IS_NULL_OR_EMPTY: A field in source overwrites its corresponding in target if the field in target is  null or empty.
+* SOURCE: Returns the source always.
+* SOURCE_NOT_EMPTY: A field in source overwrites its corresponding in target if the field in source is not empty.
+* SOURCE_NOT_NULL: A field in source overwrites its corresponding in target if the field in source is not null.
+* SOURCE_NOT_NULL_NOT_EMPTY: A field in source overwrites its corresponding in target if the field in source is not null and not empty.
+* TARGET: Returns the target always.
+* TARGET_EMPTY: A field in source overwrites its corresponding in target if the field in target is empty.
+* TARGET_IS_NULL:  A field in source overwrites its corresponding in target if the field in target is null.
+* TARGET_IS_NULL_OR_EMPTY: A field in source overwrites its corresponding in target if the field in target is  null or empty.
 
 
 }
