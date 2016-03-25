@@ -37,7 +37,7 @@ The examples above on apply merge strategies globally on all fields. merge-pojos
 
 merge-pojos also allows customizing merge of certain fields. For instance, say `DummyPojo.class` has a field __firstName__ of type String. Then we can customize the merge of such field as follows:
 ```
-DummyPojo resultPojo = factory.mergeFacade().customize(String.class, "name",  new CustomMerge<String>() {
+DummyPojo resultPojo = factory.mergeFacade().customize(String.class, "firstName",  new CustomMerge<String>() {
 
 			public String merge(String source, String target) {
 				return "my dummy pojo's name";
