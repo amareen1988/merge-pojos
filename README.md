@@ -35,5 +35,17 @@ The examples above on apply merge strategies globally on all fields. merge-pojos
 * TARGET_IS_NULL_OR_EMPTY: A field in source overwrites its corresponding in target if the field in target is  null or empty.
 
 
+merge-pojos also allows customizing merge of certain fields. Let assume `DummyPojo.class` has a field --name-- of type String. Then we can customize the merge of such field as follows:
+```
+DummyPojo resultPojo = factory.mergeFacade().customize(String.class, "name",  new CustomMerge<String>() {
+
+			public String merge(String source, String target) {
+				return "my dummy pojo's name";
+			}
+		}).merge(pojo1, pojo2);
+```
+Now, our `resultPojo` will have a --name-- value of "my dummy pojo's name"
+
+
 }
 
